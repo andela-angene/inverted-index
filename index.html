@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Angular</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+     
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-messages.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="InvertedIndex.js"></script>
+    <script src="app.js"></script>
+    <style>
+      body{padding-top: 60px;}
+  </style>
+</head>
+<body>
+  <div class="wrapper container" ng-controller="mainController">
+   
+    <div class="container">
+      
+      
+      <input type="file" ng-model="fileUpload" id="fileInput">
+      
+     <br><br><br>
+<!--     search  -->
+      <input type="text" ng-model="searchKey"> <button ng-click="searchIndex(searchKey)">Search</button>
+      <div id="flash"></div>
+      <div class="display">
+        <ul>
+         <li><a href="javascript:void(0)" ng-click="indexAll()">Index all files</a></li>
+          <li ng-repeat="file in files"><a href="javascript:void(0)" ng-click="getIndex(file)">{{file}}</a></li>
+        </ul>
+      </div>
+      
+      <!--Single File-->
+      <table class="table" ng-if="!showAll">
+        <thead>
+          <th>Word</th>
+          <th ng-repeat="num in indexed.totalBooks">doc{{num + 1}}</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="word in indexed.allWords" ng-if="!search.check"><td>{{word}}</td><td ng-repeat="num in indexed.totalBooks">{{verify(indexed['book' + num][word])}}</td></tr>
+          <tr ng-if="search.check" ng-repeat="word in search.keys"><td>{{word}}</td><td ng-repeat="num in indexed.totalBooks">{{verify(indexed['book' + num][word])}}</td></tr>
+        </tbody>
+      </table>
+
+      <!--Show All Files-->
+      <table class="table" ng-if="showAll" ng-repeat="file in files">
+        <thead>
+          <th>Word</th>
+          <th ng-repeat="num in indexed[file].totalBooks">doc{{num + 1}}</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="word in indexed[file].allWords" ng-if="!search.check"><td>{{word}}</td><td ng-repeat="num in indexed[file].totalBooks">{{verify(indexed[file]['book' + num][word])}}</td></tr>
+          <tr ng-if="search.check" ng-repeat="word in search.keys"><td>{{word}}</td><td ng-repeat="num in indexed[file].totalBooks">{{verify(indexed[file]['book' + num][word])}}</td></tr>
+        </tbody>
+      </table>
+      
+    </div>
+  
+    
+  </div>
+</body>
+</html>
