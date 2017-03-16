@@ -25,12 +25,12 @@
       
      <br><br><br>
 <!--     search  -->
-      <input type="text" ng-model="searchKey"> <button ng-click="searchIndex(searchKey)">Search</button>
+      <input type="text" ng-model="searchKey" ng-keypress="searchOnEnter($event, searchKey)"> <button ng-click="searchIndex(searchKey)">Search</button>
       <div id="flash"></div>
       <div class="display">
         <ul>
          <li><a href="javascript:void(0)" ng-click="indexAll()">Index all files</a></li>
-          <li ng-repeat="file in files"><a href="javascript:void(0)" ng-click="getIndex(file)">{{file}}</a></li>
+          <li ng-repeat="file in masterDB.files"><a href="javascript:void(0)" ng-click="getIndex(file)">{{file}}</a></li>
         </ul>
       </div>
       
@@ -47,7 +47,7 @@
       </table>
 
       <!--Show All Files-->
-      <table class="table" ng-if="showAll" ng-repeat="file in files">
+      <table class="table" ng-if="showAll" ng-repeat="file in masterDB.files">
         <thead>
           <th>Word</th>
           <th ng-repeat="num in indexed[file].totalBooks">doc{{num + 1}}</th>

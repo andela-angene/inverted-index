@@ -4,21 +4,25 @@ var myApp = angular.module('myApp', ['ngMessages']);
 
 myApp.controller('mainController', ['$scope', '$log', '$filter', '$timeout', function($scope, $log, $filter, $timeout) {
   
-  $scope.names = ['Ben', 'Nate', 'Austin', 'Yiannis', 'Matt', 'Matt'];
   $scope.name = 'tony';
   $scope.showAll = false;
   $scope.files = [];
   $scope.search = {check: false}
-  $scope.masterDB = {};
+  $scope.masterDB = {files: []};
   $scope.getIndex = (file) => {
     $scope.search.check = false;
     $scope.showAll = false;
     $scope.indexed = $scope.masterDB[file];
   }
+  $scope.searchOnEnter = (event, word) => {
+    if (event.which === 13 && word){
+      $scope.searchIndex(word);
+    }
+  }
   $scope.indexed = {totalBooks: []};
   $scope.verify = (check) => {
-    if (check) return 'true';
-    return 'false';
+    if (check) return 'T';
+    return 'X';
   }
   $scope.indexAll = () => {
     $scope.search.check = false;
@@ -43,13 +47,13 @@ myApp.controller('mainController', ['$scope', '$log', '$filter', '$timeout', fun
     promise.then((database) => {
       let filename = fileInput[0].files[0].name;
       $scope.$apply(() => {
-        if ($scope.files.indexOf(filename) !== -1) {
+        if ($scope.masterDB.files.indexOf(filename) !== -1) {
           console.log('file already exists');
           return;
         }
         $scope.showAll = false;
         $scope.search.check = false;
-        $scope.files.push(filename);
+        $scope.masterDB.files.push(filename);
         $scope.indexed = database;
         $scope.masterDB[filename] = database;
         $scope.name = 'added';

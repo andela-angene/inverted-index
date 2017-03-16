@@ -40,8 +40,6 @@ class InvertedIndex {
         }
     }
 
-
-
     static validateFile(fileContent) {
         if (fileContent.constructor !== Array) return false;
         for (var i = 0; i < fileContent.length; i++) {
@@ -54,7 +52,7 @@ class InvertedIndex {
     }
 
     static tokenize(text) {
-        return text.replace(/[^\w\s-]/g, '').split(/\s+/);
+        return text.replace(/[^\w\s-]/g, '').toLowerCase().split(/\s+/);
     }
 
     static createIndex(file, database) {
