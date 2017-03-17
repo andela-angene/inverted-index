@@ -20,41 +20,42 @@
    
     <div class="container">
       
-      
       <input type="file" ng-model="fileUpload" id="fileInput">
       
      <br><br><br>
 <!--     search  -->
-      <input type="text" ng-model="searchKey" ng-keypress="searchOnEnter($event, searchKey)"> <button ng-click="searchIndex(searchKey)">Search</button>
+      <input type="text" ng-model="searchKey" ng-keypress="masterIndex.searchOnEnter($event, searchKey)"> <button ng-click="masterIndex.searchIndex(searchKey)">Search</button>
       <div id="flash"></div>
       <div class="display">
         <ul>
-         <li><a href="javascript:void(0)" ng-click="indexAll()">Index all files</a></li>
-          <li ng-repeat="file in masterDB.files"><a href="javascript:void(0)" ng-click="getIndex(file)">{{file}}</a></li>
+         <li><a href="javascript:void(0)" ng-click="masterIndex.showAll()">Index all files</a></li>
+          <li ng-repeat="file in masterIndex.files">
+            <a href="javascript:void(0)" ng-click="masterIndex.getIndex(file)">{{file}}</a> <a href="javascript:void(0)" ng-click="masterIndex.deleteFile(file)">Delete</a>
+          </li>
         </ul>
       </div>
       
       <!--Single File-->
-      <table class="table" ng-if="!showAll">
+      <table class="table" ng-if="!masterIndex.showAllFiles">
         <thead>
           <th>Word</th>
-          <th ng-repeat="num in indexed.totalBooks">doc{{num + 1}}</th>
+          <th ng-repeat="num in masterIndex.indexed.totalBooks">doc{{num + 1}}</th>
         </thead>
         <tbody>
-          <tr ng-repeat="word in indexed.allWords" ng-if="!search.check"><td>{{word}}</td><td ng-repeat="num in indexed.totalBooks">{{verify(indexed['book' + num][word])}}</td></tr>
-          <tr ng-if="search.check" ng-repeat="word in search.keys"><td>{{word}}</td><td ng-repeat="num in indexed.totalBooks">{{verify(indexed['book' + num][word])}}</td></tr>
+          <tr ng-repeat="word in masterIndex.indexed.allWords" ng-if="!masterIndex.check"><td>{{word}}</td><td ng-repeat="num in masterIndex.indexed.totalBooks">{{masterIndex.verifyWord(masterIndex.indexed['book' + num][word])}}</td></tr>
+          <tr ng-if="masterIndex.check" ng-repeat="word in masterIndex.searchTerms"><td>{{word}}</td><td ng-repeat="num in masterIndex.indexed.totalBooks">{{masterIndex.verifyWord(masterIndex.indexed['book' + num][word])}}</td></tr>
         </tbody>
       </table>
 
       <!--Show All Files-->
-      <table class="table" ng-if="showAll" ng-repeat="file in masterDB.files">
+      <table class="table" ng-if="masterIndex.showAllFiles" ng-repeat="file in masterIndex.files">
         <thead>
           <th>Word</th>
-          <th ng-repeat="num in indexed[file].totalBooks">doc{{num + 1}}</th>
+          <th ng-repeat="num in masterIndex[file].totalBooks">doc{{num + 1}}</th>
         </thead>
         <tbody>
-          <tr ng-repeat="word in indexed[file].allWords" ng-if="!search.check"><td>{{word}}</td><td ng-repeat="num in indexed[file].totalBooks">{{verify(indexed[file]['book' + num][word])}}</td></tr>
-          <tr ng-if="search.check" ng-repeat="word in search.keys"><td>{{word}}</td><td ng-repeat="num in indexed[file].totalBooks">{{verify(indexed[file]['book' + num][word])}}</td></tr>
+          <tr ng-repeat="word in masterIndex[file].allWords" ng-if="!masterIndex.check"><td>{{word}}</td><td ng-repeat="num in masterIndex[file].totalBooks">{{masterIndex.verifyWord(masterIndex[file]['book' + num][word])}}</td></tr>
+          <tr ng-if="masterIndex.check" ng-repeat="word in masterIndex.searchTerms"><td>{{word}}</td><td ng-repeat="num in masterIndex[file].totalBooks">{{masterIndex.verifyWord(masterIndex[file]['book' + num][word])}}</td></tr>
         </tbody>
       </table>
       
