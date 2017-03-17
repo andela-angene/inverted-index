@@ -1,0 +1,24 @@
+{
+  "name": "inverted-index",
+  "version": "1.0.0",
+  "description": "An application that uses inverted index to make the words in a list of books searchable/accessible ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-angene/inverted-index.git"
+  },
+  "author": "Anthony Ngene",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-angene/inverted-index/issues"
+  },
+  "homepage": "https://github.com/andela-angene/inverted-index#readme",
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0"
+  }
+}
