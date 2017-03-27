@@ -8,10 +8,6 @@ const wrongData = require('./books/wrongData.json');
 const index = new InvertedIndex();
 
 describe('InvertedIndex', () => {
-  beforeAll(() => {
-    this.index = new InvertedIndex();
-  });
-
   describe('Constructor', () => {
     it('can create an instance of InvertedIndex', () => {
       expect(typeof index).toEqual('object');
@@ -35,11 +31,12 @@ describe('InvertedIndex', () => {
     it('should return the file content if a valid file was uploaded', () => {
       expect(InvertedIndex.validateFile(validFile)).not.toBeFalsy();
       expect(InvertedIndex.validateFile(simpleValidFile)).not.toBeFalsy();
+      expect(typeof InvertedIndex.validateFile(validFile)).toEqual('object');
     });
   });
 
   describe('Tokenize', () => {
-    it('return an array of unique words', () => {
+    it('should return an array of unique words', () => {
       expect(InvertedIndex.tokenize('tony is humble tony'))
       .toEqual(['tony', 'is', 'humble']);
     });
