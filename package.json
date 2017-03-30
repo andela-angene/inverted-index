@@ -4,7 +4,8 @@
   "description": "An application that uses inverted index to make the words in a list of books searchable/accessible ",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.conf.js --single-run"
+    "test": "karma start karma.conf.js --single-run",
+    "postinstall": "gulp browserify"
   },
   "repository": {
     "type": "git",
