@@ -1,6 +1,6 @@
 # Inverted Index
 [![Build Status](https://api.travis-ci.org/andela-angene/inverted-index.svg?branch=develop)](https://travis-ci.org/andela-angene/inverted-index)
-[![Coverage Status](https://coveralls.io/repos/github/andela-angene/inverted-index/badge.svg?branch=feature%2F1%2Fwrite-tests)](https://coveralls.io/github/andela-angene/inverted-index?branch=feature%2F1%2Fwrite-tests)
+[![Coverage Status](https://coveralls.io/repos/github/andela-angene/inverted-index/badge.svg?branch=develop)](https://coveralls.io/github/andela-angene/inverted-index?branch=develop)
 [![Code Climate](https://codeclimate.com/github/andela-angene/inverted-index/badges/gpa.svg)](https://codeclimate.com/github/andela-angene/inverted-index)
 ## Introduction
 Inverted index app takes a JSON array of text objects and creates an index from the array. The index allows a user to search for text blocks in the array that contain a specified collection of words. 
