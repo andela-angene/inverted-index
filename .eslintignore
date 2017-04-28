@@ -1,0 +1,8 @@
+/node_modules/*
+package.json
+karma.conf.js
+server.js
+test/generatedSpec.js
+test/lib/*
+src/js/bootstrap.min.js
+src/css/bootstrap.min.css
