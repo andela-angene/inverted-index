@@ -1,5 +1,5 @@
 # Inverted Index
-[![Build Status](https://api.travis-ci.org/andela-angene/inverted-index.svg?branch=develop)](https://travis-ci.org/andela-angene/inverted-index)
+[![Build Status](https://api.travis-ci.org/tonymontaro/inverted-index.svg?branch=develop)](https://travis-ci.org/tonymontaro/inverted-index)
 [![Coverage Status](https://coveralls.io/repos/github/andela-angene/inverted-index/badge.svg?branch=develop)](https://coveralls.io/github/andela-angene/inverted-index?branch=develop)
 [![Code Climate](https://codeclimate.com/github/andela-angene/inverted-index/badges/gpa.svg)](https://codeclimate.com/github/andela-angene/inverted-index)
 ## Introduction
